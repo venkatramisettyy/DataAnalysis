@@ -1,6 +1,6 @@
 // Load the movie data from the file
 
-val moviesRDD = sc.textFile("/home/srinivas/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/movies.dat")
+val moviesRDD = sc.textFile("/home/venkat/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/movies.dat")
 
 
 // Extracting necessary fields from each line
