@@ -90,7 +90,7 @@ moviesPerGenre.foreach(println)
 // distict genres
 
 
-val movies_rdd=sc.textFile("/home/srinivas/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/movies.dat")
+val movies_rdd=sc.textFile("/home/venkat/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/movies.dat")
 val genres=movies_rdd.map(lines=>lines.split("::")(2))
 val testing=genres.flatMap(line=>line.split('|'))
 val genres_distinct_sorted=testing.distinct().sortBy(_(0))
@@ -127,7 +127,7 @@ val result=movies_digit_count.union(movies_letter_count).repartition(1).saveAsTe
 // top 10 most viewed movies
 
 
-val ratingsRDD=sc.textFile("/home/srinivas/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/ratings.dat")
+val ratingsRDD=sc.textFile("/home/venkat/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/ratings.dat")
 val movies=ratingsRDD.map(line=>line.split("::")(1).toInt)
 val movies_pair=movies.map(mv=>(mv,1))
 
@@ -137,7 +137,7 @@ val movies_sorted=movies_count.sortBy(x=>x._2,false,1)
 val mv_top10List=movies_sorted.take(10).toList
 val mv_top10RDD=sc.parallelize(mv_top10List)
 
-val mv_names=sc.textFile("/home/srinivas/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/movies.dat").map(line=>(line.split("::")(0).toInt,line.split("::")(1)))
+val mv_names=sc.textFile("/home/venkat/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/movies.dat").map(line=>(line.split("::")(0).toInt,line.split("::")(1)))
 
 
 
@@ -169,7 +169,7 @@ genre_sort.saveAsTextFile("output/movie_in_each_genre-csv")
 // // // users.dat
 
 
-val usersRDD = spark.sparkContext.textFile("/home/srinivas/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/users.dat")
+val usersRDD = spark.sparkContext.textFile("/home/venkat/Downloads/Movies-Analytics-in-Spark-and-Scala-master/Movielens/users.dat")
 
 // Transform the RDD to extract the gender field:
 val genderRDD = usersRDD.map(line => line.split("::")(1))
